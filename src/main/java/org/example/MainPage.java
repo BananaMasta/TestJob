@@ -28,26 +28,28 @@ public class MainPage {
     private WebElement letterTheme;
     @FindBy(xpath = "/html/body/div[2]/div/div[5]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[6]/div[3]/div[2]/div[2]/div/div/form/div[5]/div[2]/table/tbody/tr/td[1]/div[3]/div[1]/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[2]/td/span/table/tbody/tr/td/iframe")
     private WebElement letter;
+    @FindBy(xpath = "/html/body/div[2]/div/div[5]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[6]/div[1]/div/div[2]/div/div[3]/div/div[2]/div[1]/div/span")
+    private WebElement buttonSendLetter;
 
     public MainPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    public void sendMessage(String myMail, String password, String mailTo) {
-        mailField.sendKeys(myMail);
+    public void sendMessage() {
+        mailField.sendKeys("test.testmail82@mail.ru");
         passwordButton.click();
-        passwordField.sendKeys(password);
+        passwordField.sendKeys("m4Tgee65tr%htr");
         enter.click();
         writeMessageButton.click();
-        letterTo.sendKeys(mailTo);
+        letterTo.sendKeys("dokuchaev_av@tkbbank.ru");
         letterTheme.sendKeys("Я сделал домашнее задание, простите за задержку");
         WebElement iframe = driver.findElement(By.tagName("iframe"));
         driver.switchTo().frame(iframe);
         WebElement editor = driver.findElement(By.id("tinymce"));
         editor.clear();
-        editor.sendKeys("Отправляю вам тестовое задание, закину его на гит хаб");
+        editor.sendKeys("«Добрый вечер Рябихин Владимир Сергеевич Автотест готов (ссылка на гит https://github.com/BananaMasta)»");
         driver.switchTo().defaultContent();
+        buttonSendLetter.click();
     }
-
 }

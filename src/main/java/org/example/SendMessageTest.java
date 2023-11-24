@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
@@ -34,7 +35,7 @@ public class SendMessageTest {
         chromePage = new MainPage(driver);
     }
     @Test
-    public void orderChrome() {
+    public void orderChrome() throws IOException {
         chromePage.sendMessage();
     }
 }
